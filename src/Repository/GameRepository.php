@@ -11,7 +11,7 @@ class GameRepository {
    }
    public function findById($id) {
        $statement = $this->pdo->prepare('SELECT * FROM game WHERE id = ?');
-       $statement->execute([$id]);
+       $statement->execute();
        $game = $statement->fetchObject('Game');
        return $game;
    }
@@ -24,7 +24,7 @@ class GameRepository {
    public function findByUserId($id) {
        $games = [];
        $statement = $this->pdo->prepare('SELECT * FROM game');
-       $statement->execute([$id]);
+       $statement->execute();
        $games_array = $statement->fetchAll();
        //var_dump($games_array);
        foreach($games_array as $game_array){
@@ -39,6 +39,8 @@ class GameRepository {
        return $games;
    }
 }
+
+
 
 
 
